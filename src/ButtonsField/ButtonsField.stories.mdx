@@ -1,0 +1,128 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Field } from "react-final-form";
+import ButtonsField from "./ButtonsField";
+
+<Meta title="ButtonsField" />
+
+# ButtonsField
+
+Using `ButtonsField` creates a group of buttons those behave like 'radio' buttons.
+
+<Canvas>
+  <Story name="Default">
+    <Field
+      component={ButtonsField}
+      name="buttonsField.default"
+      options={[
+        { code: "male", name: "Мужской" },
+        { code: "female", name: "Женский" },
+      ]}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Non-block">
+    <Field
+      block={false}
+      component={ButtonsField}
+      name="buttonsField.nonBlock"
+      options={[
+        { code: "male", name: "Мужской" },
+        { code: "female", name: "Женский" },
+      ]}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Disabled">
+    <Field
+      component={ButtonsField}
+      disabled
+      name="buttonsField.disabled"
+      options={[
+        { code: "male", name: "Мужской" },
+        { code: "female", name: "Женский" },
+      ]}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Read-only">
+    <Field
+      component={ButtonsField}
+      name="buttonsField.readOnly"
+      options={[
+        { code: "male", name: "Мужской" },
+        { code: "female", name: "Женский" },
+      ]}
+      readOnly
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With renderButtonName">
+    <Field
+      component={ButtonsField}
+      name="buttonsField.withRenderButtonName"
+      options={[
+        { code: "male", name: "Мужской" },
+        { code: "female", name: "Женский" },
+      ]}
+      renderButtonName={(option) => (
+        <>
+          <b>{option.code}</b>: {option.name}
+        </>
+      )}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Vertical">
+    <Field
+      component={ButtonsField}
+      name="buttonsField.vertical"
+      options={[
+        { code: "male", name: "Мужской" },
+        { code: "female", name: "Женский" },
+      ]}
+      vertical
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="True or false">
+    <Field
+      component={ButtonsField}
+      name="buttonsField.trueFalse"
+      options={[
+        { code: true, name: "Да" },
+        { code: false, name: "Нет" },
+      ]}
+      trueFalse
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With validation error">
+    <Field
+      component={ButtonsField}
+      name="buttonsField.withError"
+      options={[
+        { code: "male", name: "Мужской" },
+        { code: "female", name: "Женский" },
+      ]}
+      validate={() => "Some error happened during validation."}
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={ButtonsField} />

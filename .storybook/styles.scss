@@ -1,0 +1,128 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+.SelectFieldInner {
+  &__control {
+    background-color: $input-bg !important;
+    border: $input-border-width solid $input-border-color !important;
+    border-radius: $input-border-radius !important;
+    transition: $input-transition !important;
+
+    .SelectFieldError & {
+      border-color: $danger !important;
+    }
+
+    &--is-focused {
+      border-color: $input-focus-border-color !important;
+      box-shadow: $input-focus-box-shadow !important;
+
+      .SelectFieldError & {
+        border-color: $danger !important;
+        box-shadow: 0 0 0 $input-focus-width rgba($danger, 0.25) !important;
+      }
+    }
+
+    &--is-disabled {
+      background-color: $input-disabled-bg !important;
+    }
+  }
+
+  &__value-container {
+    padding: 0.1rem calc(#{$input-padding-x} - 2px) !important;
+  }
+
+  &__indicator-separator {
+    background-color: $input-border-color !important;
+  }
+
+  &__indicator {
+    color: $input-border-color !important;
+  }
+
+  &__clear-indicator {
+    cursor: pointer !important;
+    transition: $btn-transition !important;
+
+    &:hover {
+      color: darken($input-border-color, 7.5%) !important;
+    }
+  }
+
+  &__input,
+  &__single-value {
+    font-size: $input-font-size !important;
+    font-weight: $input-font-weight !important;
+    color: $input-color !important;
+  }
+
+  &__multi-value {
+    background-color: $primary !important;
+
+    &--is-disabled {
+      opacity: $btn-disabled-opacity !important;
+    }
+
+    &__label,
+    &__remove {
+      color: $white !important;
+    }
+
+    &__remove {
+      background-color: $primary !important;
+      cursor: pointer !important;
+      transition: $btn-transition !important;
+      user-select: none !important;
+
+      &:hover {
+        background-color: darken($primary, 7.5%) !important;
+      }
+    }
+  }
+
+  &__menu {
+    background-color: $white !important;
+    border: $input-border-width solid $input-border-color !important;
+    border-radius: $input-border-radius !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    box-shadow: $box-shadow !important;
+    z-index: 160 !important;
+  }
+
+  &__menu-list {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  &__menu-notice {
+    color: $gray-500 !important;
+    padding: 0.5rem $input-padding-x !important;
+  }
+
+  &__option {
+    background-color: $white !important;
+    color: $gray-700 !important;
+    border-bottom: 1px solid $gray-800 !important;
+    font-size: $input-font-size !important;
+    font-weight: $input-font-weight !important;
+    padding: 0.5rem $input-padding-x !important;
+    cursor: pointer !important;
+
+    &--is-focused {
+      background-color: $gray-200 !important;
+    }
+
+    &--is-selected {
+      background-color: $gray-600 !important;
+      color: $white !important;
+    }
+
+    &--is-disabled {
+      color: $gray-500 !important;
+      cursor: default !important;
+    }
+  }
+
+  &__placeholder {
+    color: $input-placeholder-color !important;
+  }
+}
