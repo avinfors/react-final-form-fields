@@ -1,0 +1,41 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Field } from "react-final-form";
+import MaskedField from "./MaskedField";
+
+<Meta title="MaskedField" />
+
+# MaskedField
+
+Using `MaskedField` creates a masked input.
+
+<Canvas>
+  <Story name="СНИЛС">
+    <Field
+      component={MaskedField}
+      inputMode="numeric"
+      mask={[
+        /\d/,
+        /\d/,
+        /\d/,
+        "-",
+        /\d/,
+        /\d/,
+        /\d/,
+        "-",
+        /\d/,
+        /\d/,
+        /\d/,
+        " ",
+        /\d/,
+        /\d/,
+      ]}
+      name="maskedField.snils"
+      placeholder="СНИЛС"
+      placeholderChar="✻"
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={MaskedField} />
