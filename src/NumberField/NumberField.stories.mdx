@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Field } from "react-final-form";
+import NumberField from "./NumberField";
+
+<Meta title="NumberField" />
+
+# NumberField
+
+Using `NumberField` creates an input that can only be filled with a number.
+
+<Canvas>
+  <Story name="Default">
+    <Field
+      component={NumberField}
+      name="numberField.default"
+      placeholder="Type a number"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Only three digits">
+    <Field
+      component={NumberField}
+      decimalScale={0}
+      maxLength={3}
+      name="numberField.onlyThreeDigits"
+      placeholder="Only three digits"
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={NumberField} />
