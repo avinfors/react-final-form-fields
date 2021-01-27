@@ -1,0 +1,80 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Field } from "react-final-form";
+import CheckboxField from "./CheckboxField";
+
+<Meta title="CheckboxField" />
+
+# CheckboxField
+
+Using `CheckboxField` creates a checkbox input.
+
+<Canvas>
+  <Story name="Default">
+    <Field
+      component={CheckboxField}
+      label="Simple checkbox"
+      name="checkboxField.default"
+      type="checkbox"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Disabled">
+    <Field
+      disabled
+      component={CheckboxField}
+      label="Disabled checkbox"
+      name="checkboxField.disabled"
+      type="checkbox"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With JSX label">
+    <Field
+      component={CheckboxField}
+      label={
+        <a
+          href="//github.com/"
+          onClick={(e) => e.stopPropagation()}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          GitHub
+        </a>
+      }
+      name="checkboxField.withJsxLabel"
+      type="checkbox"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Read-only">
+    <Field
+      component={CheckboxField}
+      label="Read-only checkbox"
+      name="checkboxField.readOnly"
+      readOnly
+      type="checkbox"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With error">
+    <Field
+      component={CheckboxField}
+      label="Checkbox"
+      name="checkboxField.withError"
+      type="checkbox"
+      validate={() => "Error occurred."}
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={CheckboxField} />
