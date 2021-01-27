@@ -9,3 +9,6 @@ export { MaskedFieldProps } from "./MaskedField";
 
 export { default as NumberField } from "./NumberField";
 export { NumberFieldProps } from "./NumberField";
+
+export { default as PasswordField } from "./PasswordField";
+export { PasswordFieldProps } from "./PasswordField";
