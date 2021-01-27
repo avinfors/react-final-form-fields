@@ -1,0 +1,80 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Field } from "react-final-form";
+import SelectField from "./SelectField";
+
+<Meta title="SelectField" />
+
+# SelectField
+
+Using `SelectField` creates a select input via [react-select](https://react-select.com/) package.
+
+<Canvas>
+  <Story name="Simple">
+    <Field
+      component={SelectField}
+      name="selectField.simple"
+      options={[
+        { code: "ru", name: "the Russian Federation" },
+        { code: "us", name: "the United States of America" },
+        { code: "so", name: "Somalia" },
+        { code: "kz", name: "Kazakhstan" },
+        { code: "de", name: "Germany" },
+        { code: "it", name: "Italy" },
+        { code: "mv", name: "Maldives" },
+        { code: "il", name: "Israel" },
+        { code: "mk", name: "Republic of North Macedonia" },
+        { code: "ba", name: "Bosnia and Herzegovina" },
+      ]}
+      validate={() => "werq"}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Multi with max items provided">
+    <Field
+      component={SelectField}
+      isMulti
+      maxItems={5}
+      name="selectField.multiWithMaxItems"
+      options={[
+        { code: "ru", name: "the Russian Federation" },
+        { code: "us", name: "the United States of America" },
+        { code: "so", name: "Somalia" },
+        { code: "kz", name: "Kazakhstan" },
+        { code: "de", name: "Germany" },
+        { code: "it", name: "Italy" },
+        { code: "mv", name: "Maldives" },
+        { code: "il", name: "Israel" },
+        { code: "mk", name: "Republic of North Macedonia" },
+        { code: "ba", name: "Bosnia and Herzegovina" },
+      ]}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With disabled option">
+    <Field
+      component={SelectField}
+      isOptionDisabled={(option) => option.code === "so"}
+      name="selectField.withDisabledOption"
+      options={[
+        { code: "ru", name: "the Russian Federation" },
+        { code: "us", name: "the United States of America" },
+        { code: "so", name: "Somalia" },
+        { code: "kz", name: "Kazakhstan" },
+        { code: "de", name: "Germany" },
+        { code: "it", name: "Italy" },
+        { code: "mv", name: "Maldives" },
+        { code: "il", name: "Israel" },
+        { code: "mk", name: "Republic of North Macedonia" },
+        { code: "ba", name: "Bosnia and Herzegovina" },
+      ]}
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={SelectField} />

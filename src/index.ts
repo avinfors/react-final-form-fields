@@ -15,3 +15,6 @@ export { PasswordFieldProps } from "./PasswordField";
 
 export { default as PhoneField } from "./PhoneField";
 export { PhoneFieldProps } from "./PhoneField";
+
+export { default as SelectField } from "./SelectField";
+export { SelectFieldProps, SelectFieldOption } from "./SelectField";
