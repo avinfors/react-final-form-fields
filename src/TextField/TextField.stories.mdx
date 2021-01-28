@@ -1,0 +1,111 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Field } from "react-final-form";
+import { Button } from "reactstrap";
+import TextField from "./TextField";
+
+<Meta title="TextField" />
+
+# TextField
+
+Using `TextField` creates a text input.
+
+<Canvas>
+  <Story name="Default">
+    <Field component={TextField} name="textField.default" />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Disabled">
+    <Field
+      disabled
+      component={TextField}
+      name="textField.disabled"
+      placeholder="Placeholder"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Read-only">
+    <Field
+      component={TextField}
+      name="textField.readOnly"
+      placeholder="Placeholder"
+      readOnly
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With addon">
+    <Field
+      action={{ addon: <Button>Button</Button> }}
+      component={TextField}
+      name="textField.withAddon"
+      placeholder="Placeholder"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With error">
+    <Field
+      component={TextField}
+      name="textField.withError"
+      placeholder="Placeholder"
+      validate={() => "Error happened during validation."}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="No past">
+    <Field
+      component={TextField}
+      name="textField.noPast"
+      noPast
+      placeholder="Placeholder"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Sanitaze on blur">
+    <Field
+      component={TextField}
+      name="textField.sanitazeOnBlur"
+      placeholder="Placeholder"
+      sanitazeOnBlur
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Trim on blur">
+    <Field
+      component={TextField}
+      name="textField.trimOnBlur"
+      placeholder="Placeholder"
+      trimOnBlur
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Allowed only Latin">
+    <Field
+      component={TextField}
+      name="textField.allowedOnlyLatin"
+      placeholder="Placeholder"
+      validateLanguage={{
+        regex: /^[a-zA-Z-\s]+$/,
+        error: "Allowed only Latin.",
+      }}
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={TextField} />

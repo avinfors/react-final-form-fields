@@ -18,3 +18,6 @@ export { PhoneFieldProps } from "./PhoneField";
 
 export { default as SelectField } from "./SelectField";
 export { SelectFieldProps, SelectFieldOption } from "./SelectField";
+
+export { default as TextField } from "./TextField";
+export { TextFieldProps } from "./TextField";
