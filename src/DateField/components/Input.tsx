@@ -59,7 +59,7 @@ const InputBase: React.FC = () => {
         <MaskedInput
           {...input}
           {...inputProps}
-          keepCharPositions={false}
+          keepCharPositions={true}
           mask={[/\d/, /\d/, ".", /\d/, /\d/, ".", /\d/, /\d/, /\d/, /\d/]}
           onChange={(e) => selectDay(e.target.value)}
           pipe={pipe}
