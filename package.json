@@ -1,6 +1,6 @@
 {
   "name": "@avinfors/react-final-form-fields",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "form field react components for react-final-form",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
