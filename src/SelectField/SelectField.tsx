@@ -39,12 +39,12 @@ const SelectField: React.FC<SelectFieldProps> = ({
   isOptionDisabled,
   isSearchable,
   menuPlacement,
-  noOptionsMessage = () => "Нет опций для выбора",
-  optionLabel = "name",
+  noOptionsMessage,
+  optionLabel,
   options,
-  optionValue = "code",
+  optionValue,
   placeholder,
-  processValuesBeforeSelect = (values) => values,
+  processValuesBeforeSelect,
   readOnly,
   ...rest
 }) => {
@@ -87,6 +87,13 @@ const SelectField: React.FC<SelectFieldProps> = ({
       />
     </ErrorTooltip>
   );
+};
+
+SelectField.defaultProps = {
+  noOptionsMessage: () => "Нет опций для выбора",
+  optionLabel: "name",
+  optionValue: "code",
+  processValuesBeforeSelect: (values) => values,
 };
 
 export default SelectField;

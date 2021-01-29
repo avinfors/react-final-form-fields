@@ -19,7 +19,7 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
   meta,
   disabled,
   placeholder,
-  placeholderChar = "_",
+  placeholderChar,
   ...rest
 }) => {
   /**
@@ -91,6 +91,10 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
       </InputGroup>
     </ErrorTooltip>
   );
+};
+
+PhoneField.defaultProps = {
+  placeholderChar: "_",
 };
 
 export default PhoneField;
