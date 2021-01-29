@@ -28,15 +28,15 @@ export type ButtonsFieldProps = FieldRenderProps<ButtonsFieldOption> & {
 const ButtonsField: React.FC<ButtonsFieldProps> = ({
   input,
   meta,
-  block = true,
-  codeName = "code",
+  block,
+  codeName,
   disabled,
   equalWidth,
-  options = [],
+  options,
   readOnly,
   renderButtonName,
   trueFalse,
-  valueName = "name",
+  valueName,
   vertical,
 }) => {
   const buttonClickHandler = (option: ButtonsFieldOption) => () => {
@@ -70,6 +70,13 @@ const ButtonsField: React.FC<ButtonsFieldProps> = ({
       </ButtonGroup>
     </ErrorTooltip>
   );
+};
+
+ButtonsField.defaultProps = {
+  block: true,
+  codeName: "code",
+  options: [],
+  valueName: "name",
 };
 
 export default ButtonsField;

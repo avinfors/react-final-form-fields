@@ -25,14 +25,14 @@ const NumberField: React.FC<NumberFieldProps> = ({
   input,
   meta,
   allowNegative,
-  decimalScale = 2,
-  decimalSeparator = ",",
+  decimalScale,
+  decimalSeparator,
   disabled,
   inputMode,
-  fixedDecimalScale = true,
-  maxLength = 20,
+  fixedDecimalScale,
+  maxLength,
   placeholder,
-  thousandSeparator = " ",
+  thousandSeparator,
   type,
   ...rest
 }) => {
@@ -61,6 +61,14 @@ const NumberField: React.FC<NumberFieldProps> = ({
       </InputGroup>
     </ErrorTooltip>
   );
+};
+
+NumberField.defaultProps = {
+  decimalScale: 2,
+  decimalSeparator: ",",
+  fixedDecimalScale: true,
+  maxLength: 20,
+  thousandSeparator: " ",
 };
 
 export default NumberField;
