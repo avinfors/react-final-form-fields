@@ -150,7 +150,6 @@ export const DateFieldProvider: React.FC<
     } else {
       setError();
     }
-    setTimeout(setError);
 
     if (error !== undefined) {
       setDateState(getInitialDate(undefined));
