@@ -85,5 +85,8 @@
     "react-final-form": "^6.5.2",
     "reactstrap": "^8.9.0"
   },
-  "homepage": "https://github.com/avinfors/react-final-form-fields"
+  "homepage": "https://github.com/avinfors/react-final-form-fields",
+  "publishConfig": {
+    "access": "public"
+  }
 }
