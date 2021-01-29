@@ -36,14 +36,17 @@ Using `CheckboxField` creates a checkbox input.
     <Field
       component={CheckboxField}
       label={
-        <a
-          href="//github.com/"
-          onClick={(e) => e.stopPropagation()}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          GitHub
-        </a>
+        <>
+          Follow{" "}
+          <a
+            href="//github.com/"
+            onClick={(e) => e.stopPropagation()}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
+        </>
       }
       name="checkboxField.withJsxLabel"
       type="checkbox"
