@@ -9,6 +9,7 @@ import {
   isValid,
   isBefore,
   isAfter,
+  getDefaultDate,
 } from "./utils";
 
 type ViewType = "days" | "months" | "years";
@@ -60,18 +61,27 @@ export const DateFieldProvider: React.FC<
   );
 
   const minDateTime = React.useMemo(
-    () => (minDate instanceof Date ? minDate.getTime() : undefined),
+    () =>
+      minDate instanceof Date && isValid(minDate)
+        ? minDate.getTime()
+        : getDefaultDate().getTime(),
     [minDate]
   );
 
   const maxDateTime = React.useMemo(
-    () => (maxDate instanceof Date ? maxDate.getTime() : undefined),
+    () =>
+      maxDate instanceof Date && isValid(maxDate)
+        ? maxDate.getTime()
+        : getDefaultDate().getTime(),
     [maxDate]
   );
 
   const defaultDateTime = React.useMemo(
-    () => (defaultDate instanceof Date ? defaultDate.getTime() : undefined),
-    [defaultDate]
+    () =>
+      defaultDate instanceof Date && isValid(defaultDate)
+        ? defaultDate.getTime()
+        : minDateTime,
+    [defaultDate, minDateTime]
   );
 
   const [viewState, setViewState] = React.useState<ViewType>("days");
@@ -169,6 +179,15 @@ export const DateFieldProvider: React.FC<
     <DateFieldCtx.Provider
       value={{
         ...props,
+        inputProps: {
+          ...props.inputProps,
+          "data-mindate": format(minDateTime, dateFormat),
+          "data-maxdate": format(maxDateTime, dateFormat),
+          "data-defaultdate": format(defaultDateTime, dateFormat),
+        },
+        minDate: minDateTime,
+        maxDate: maxDateTime,
+        defaultDate: defaultDateTime,
         view: viewState,
         date: dateState,
         month: monthState,

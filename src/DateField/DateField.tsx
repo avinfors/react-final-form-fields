@@ -4,7 +4,7 @@ import { InputProps, PopoverProps } from "reactstrap";
 
 import { DateFieldProvider } from "./Provider";
 import Input from "./components/Input";
-import { getDefaultDate, getMinDate, getMaxDate, format } from "./utils";
+import { getMinDate, getMaxDate, format } from "./utils";
 import ErrorTooltip from "../ErrorTooltip";
 import { getMetaError } from "../utils";
 import withForm, { WithFormProps } from "../withForm";
@@ -48,12 +48,7 @@ const DateField: React.FC<DateFieldProps & WithFormProps> = ({
         dateFormat={dateFormat}
         defaultDate={defaultDate}
         input={input}
-        inputProps={{
-          ...inputProps,
-          "data-mindate": format(minDate, dateFormat),
-          "data-maxdate": format(maxDate, dateFormat),
-          "data-defaultdate": format(defaultDate, dateFormat),
-        }}
+        inputProps={inputProps}
         maxDate={maxDate}
         maxDateMessage={maxDateMessage}
         meta={meta}
@@ -72,7 +67,6 @@ const DateField: React.FC<DateFieldProps & WithFormProps> = ({
 DateField.defaultProps = {
   calendarPosition: "bottom",
   dateFormat: "dd.MM.yyyy",
-  defaultDate: getDefaultDate(),
   inputProps: { placeholder: "дд.мм.гггг" },
   maxDate: getMaxDate(120),
   maxDateMessage: (maxDate) =>
