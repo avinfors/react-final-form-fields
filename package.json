@@ -41,6 +41,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "final-form": "^4.20.1",
+    "final-form-set-field-data": "^1.0.2",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
     "node-sass": "4.14.1",
@@ -78,9 +79,11 @@
   "peerDependencies": {
     "bootstrap": "^4.6.0",
     "final-form": "^4.20.1",
+    "final-form-set-field-data": "^1.0.2",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "react-final-form": "^6.5.2"
+    "react-final-form": "^6.5.2",
+    "reactstrap": "^8.9.0"
   },
   "homepage": "https://github.com/avinfors/react-final-form-fields"
 }

@@ -1,0 +1,47 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Field } from "react-final-form";
+import addDays from "date-fns/addDays";
+import startOfDay from "date-fns/startOfDay";
+
+import DateField from "./DateField";
+import { parseDateToUTC, formatDateFromUTC } from "../../.storybook/utils";
+
+<Meta title="DateField" />
+
+# DateField
+
+Using `DateField` creates an input with date picker.
+
+<Canvas>
+  <Story name="Default">
+    <Field component={DateField} name="dateField.defaultDate" />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With min and max dates">
+    <Field
+      component={DateField}
+      maxDate={addDays(startOfDay(new Date()), 5)}
+      minDate={addDays(startOfDay(new Date()), -5)}
+      name="dateField.withMinAndMaxDates"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With `input.value` in milliseconds">
+    <Field
+      component={DateField}
+      format={formatDateFromUTC}
+      maxDate={addDays(startOfDay(new Date()), 10)}
+      minDate={addDays(startOfDay(new Date()), -10)}
+      name="dateField.inMs"
+      parse={parseDateToUTC}
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={DateField} />
