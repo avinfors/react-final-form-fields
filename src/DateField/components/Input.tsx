@@ -70,11 +70,9 @@ const InputBase: React.FC = () => {
               inputMode="numeric"
               invalid={!!error}
               onKeyDown={(e) => {
-                // hack: When we set initial value to the field
-                // the input is not cleared if the entire value is deleted.
-                if (meta.initial === undefined) {
-                  return;
-                }
+                // hack: When we set date via the calendar the first time
+                // and try to clear the input it is not cleared
+                // because onchange event doesn't fire for some unknown reason.
                 const cursorPos = Number(e.currentTarget.selectionStart);
                 const keyCode = Number(e.keyCode);
                 if (
