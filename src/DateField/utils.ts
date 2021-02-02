@@ -12,7 +12,6 @@ import getMonth from "date-fns/getMonth";
 import getYear from "date-fns/getYear";
 import isAfter from "date-fns/isAfter";
 import isBefore from "date-fns/isBefore";
-import isDate from "date-fns/isDate";
 import isEqual from "date-fns/isEqual";
 import isToday from "date-fns/isToday";
 import isValid from "date-fns/isValid";
@@ -31,12 +30,13 @@ export const format = (date: Date | number, to = "dd.MM.yyyy"): string =>
   formatDate(date, to, { locale: ru });
 
 export const getInitialMonth = (
-  value: Date | number,
+  value: Date | number | undefined,
   defaultDate: Date | number
-): Date => (isDate(value) ? startOfDay(value) : startOfDay(defaultDate));
+): Date => (isValid(value) ? startOfDay(value) : startOfDay(defaultDate));
 
-export const getInitialDate = (value: Date | number): Date | undefined =>
-  isDate(value) ? startOfDay(value) : undefined;
+export const getInitialDate = (
+  value?: Date | number | undefined
+): Date | undefined => (isValid(value) ? startOfDay(value) : undefined);
 
 export const getDefaultDate = (): Date => startOfDay(new Date());
 
@@ -61,7 +61,6 @@ export {
   getYear,
   isAfter,
   isBefore,
-  isDate,
   isEqual,
   isToday,
   isValid,

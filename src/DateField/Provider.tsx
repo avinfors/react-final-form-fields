@@ -89,7 +89,7 @@ export const DateFieldProvider: React.FC<
     getInitialDate(inputTime)
   );
   const [monthState, setMonthState] = React.useState(() =>
-    getInitialMonth(inputTime, defaultDate)
+    getInitialMonth(inputTime, defaultDateTime)
   );
   const [showState, setShowState] = React.useState(false);
   const [typedState, setTypedState] = React.useState("");
@@ -112,14 +112,14 @@ export const DateFieldProvider: React.FC<
       if (selected) {
         input.onBlur();
       }
-      if (!isBefore(value, minDate) && !isAfter(value, maxDate)) {
+      if (!isBefore(value, minDateTime) && !isAfter(value, maxDateTime)) {
         setDateState(value);
         setMonthState(value);
       }
     } else {
       input.onChange(undefined);
-      setDateState(getInitialDate(undefined));
-      setMonthState(getInitialMonth(undefined, defaultDate));
+      setDateState(getInitialDate());
+      setMonthState(getInitialMonth(undefined, defaultDateTime));
     }
 
     setShowState(false);
@@ -152,7 +152,7 @@ export const DateFieldProvider: React.FC<
     }
 
     if (error !== undefined) {
-      setDateState(getInitialDate(undefined));
+      setDateState(getInitialDate());
       setMonthState(getInitialMonth(undefined, defaultDateTime));
     }
   }, [
