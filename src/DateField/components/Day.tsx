@@ -7,7 +7,6 @@ interface IDayProps {
   disabled: boolean;
   onClick: () => void;
   selected: boolean;
-  today: boolean;
 }
 
 const Day: React.FC<IDayProps> = ({
@@ -15,13 +14,12 @@ const Day: React.FC<IDayProps> = ({
   disabled,
   onClick,
   selected,
-  today,
 }) => (
   <Button
     className={cn(
       "border-0 outline-0 rounded",
-      today && !selected && "text-secondary font-weight-bold",
-      selected && !disabled && "text-white font-weight-normal"
+      selected && !disabled && "font-weight-normal",
+      disabled && "text-black-50"
     )}
     color={selected ? "primary" : "link"}
     disabled={disabled}
