@@ -27,15 +27,16 @@ const InputBase: React.FC = () => {
   const {
     input,
     meta,
-    show,
-    typed,
-    setShow,
-    setView,
-    selectDay,
-    inputProps,
     calendarPosition,
+    disabled,
+    inputProps,
     onCalendarOpen,
     onCalendarClose,
+    selectDay,
+    setShow,
+    setView,
+    show,
+    typed,
   } = useDateField();
 
   React.useEffect(() => {
@@ -66,6 +67,7 @@ const InputBase: React.FC = () => {
           render={(ref, props) => (
             <Input
               {...props}
+              disabled={disabled}
               innerRef={ref}
               inputMode="numeric"
               invalid={!!error}
@@ -93,6 +95,7 @@ const InputBase: React.FC = () => {
           <Button
             className="calendar-button"
             color={error ? "danger" : "primary"}
+            disabled={disabled}
             innerRef={trigger}
             onClick={() => setShow(!show)}
             outline

@@ -13,6 +13,7 @@ export type DateFieldProps = FieldRenderProps<Date | number> & {
   calendarPosition?: PopoverProps["placement"];
   dateFormat?: string;
   defaultDate?: Date | number;
+  disabled?: boolean;
   inputProps?: InputProps;
   maxDate?: Date | number;
   maxDateMessage?: (maxDate: Date | number) => string;
@@ -27,6 +28,7 @@ const DateField: React.FC<DateFieldProps & WithFormProps> = ({
   calendarPosition,
   dateFormat,
   defaultDate,
+  disabled,
   inputProps,
   maxDate,
   maxDateMessage,
@@ -47,6 +49,7 @@ const DateField: React.FC<DateFieldProps & WithFormProps> = ({
         calendarPosition={calendarPosition}
         dateFormat={dateFormat}
         defaultDate={defaultDate}
+        disabled={disabled}
         input={input}
         inputProps={inputProps}
         maxDate={maxDate}

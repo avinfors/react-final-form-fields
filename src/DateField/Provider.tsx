@@ -46,6 +46,7 @@ export const DateFieldProvider: React.FC<
     meta,
     dateFormat,
     defaultDate,
+    disabled,
     minDate,
     minDateMessage,
     maxDate,
@@ -178,26 +179,27 @@ export const DateFieldProvider: React.FC<
     <DateFieldCtx.Provider
       value={{
         ...props,
+        date: dateState,
+        defaultDate: defaultDateTime,
+        disabled,
         inputProps: {
           ...props.inputProps,
           "data-mindate": format(minDateTime, dateFormat),
           "data-maxdate": format(maxDateTime, dateFormat),
           "data-defaultdate": format(defaultDateTime, dateFormat),
         },
-        minDate: minDateTime,
         maxDate: maxDateTime,
-        defaultDate: defaultDateTime,
-        view: viewState,
-        date: dateState,
+        minDate: minDateTime,
         month: monthState,
-        show: showState,
-        typed: typedState,
-        setView: setViewState,
+        selectDay,
         setDate: setDateState,
         setMonth: setMonthState,
         setShow: setShowState,
         setTyped: setTypedState,
-        selectDay,
+        setView: setViewState,
+        show: showState,
+        typed: typedState,
+        view: viewState,
       }}
     >
       {children}
