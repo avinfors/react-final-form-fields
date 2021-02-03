@@ -51,10 +51,10 @@ export const DateFieldProvider: React.FC<
     minDateMessage,
     maxDate,
     maxDateMessage,
-    setFieldData,
   } = props;
 
-  const ref = React.useRef(false);
+  const prevDirty = React.useRef(meta.dirty);
+  const errorTyped = React.useRef(null);
 
   const inputTime = React.useMemo(
     () => (input.value instanceof Date ? input.value.getTime() : undefined),
@@ -132,40 +132,82 @@ export const DateFieldProvider: React.FC<
   }, [inputTime, dateFormat]);
 
   React.useEffect(() => {
-    const error = isBefore(inputTime, minDateTime)
-      ? minDateMessage(minDateTime)
-      : isAfter(inputTime, maxDateTime)
-      ? maxDateMessage(maxDateTime)
-      : undefined;
+    if (inputTime !== undefined) {
+      const error = isBefore(inputTime, minDateTime)
+        ? minDateMessage(minDateTime)
+        : isAfter(inputTime, maxDateTime)
+        ? maxDateMessage(maxDateTime)
+        : undefined;
 
-    const setError = () =>
-      setFieldData(input.name, {
-        error,
-      });
+      if (error !== undefined) {
+        input.onChange(error);
+        if (!meta.active) {
+          input.onBlur();
+        }
+        setDateState(getInitialDate());
+        setMonthState(getInitialMonth(undefined, defaultDateTime));
+        errorTyped.current = typedState;
+      }
+    } else if (errorTyped.current === typedState) {
+      const parsedDate = parse(typedState, dateFormat, 0);
 
-    // hack: We need setTimeout() because setFieldData() doesn't fire
-    // on the first render when the field has initial value.
-    if (!ref.current) {
-      ref.current = true;
-      meta.initial === undefined ? setError() : setTimeout(setError);
-    } else {
-      setError();
-    }
-
-    if (error !== undefined) {
-      setDateState(getInitialDate());
-      setMonthState(getInitialMonth(undefined, defaultDateTime));
+      if (
+        isValid(parsedDate) &&
+        !isBefore(parsedDate, minDateTime) &&
+        !isAfter(parsedDate, maxDateTime)
+      ) {
+        setDateState(parsedDate);
+        setMonthState(parsedDate);
+        input.onChange(parsedDate);
+        input.onBlur();
+        errorTyped.current = null;
+      }
     }
   }, [
-    input.name,
+    input,
     inputTime,
     defaultDateTime,
     maxDateTime,
     maxDateMessage,
     minDateTime,
     minDateMessage,
-    setFieldData,
+    meta.active,
+    dateFormat,
+    typedState,
+  ]);
+
+  React.useEffect(() => {
+    const dirty = meta.dirty;
+    const initial = meta.initial;
+    const visited = meta.visited;
+
+    if (prevDirty && !dirty && !visited) {
+      let typed = "";
+
+      if (initial instanceof Date || typeof initial === "number") {
+        typed = format(initial);
+
+        if (!isBefore(initial, minDateTime) && !isAfter(initial, maxDateTime)) {
+          const value = initial instanceof Date ? initial : new Date(initial);
+
+          setDateState(value);
+          setMonthState(value);
+        }
+      } else {
+        setDateState(getInitialDate());
+        setMonthState(getInitialMonth(undefined, defaultDateTime));
+      }
+      setTypedState(typed);
+    }
+
+    return () => (prevDirty.current = dirty);
+  }, [
+    meta.dirty,
     meta.initial,
+    meta.visited,
+    defaultDateTime,
+    minDateTime,
+    maxDateTime,
   ]);
 
   React.useEffect(() => {

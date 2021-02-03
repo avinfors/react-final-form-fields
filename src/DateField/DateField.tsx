@@ -7,7 +7,6 @@ import Input from "./components/Input";
 import { getMinDate, getMaxDate, format } from "./utils";
 import ErrorTooltip from "../ErrorTooltip";
 import { getMetaError } from "../utils";
-import withForm, { WithFormProps } from "../withForm";
 
 export type DateFieldProps = FieldRenderProps<Date | number> & {
   calendarPosition?: PopoverProps["placement"];
@@ -21,8 +20,7 @@ export type DateFieldProps = FieldRenderProps<Date | number> & {
   minDateMessage?: (minDate: Date | number) => string;
 };
 
-const DateField: React.FC<DateFieldProps & WithFormProps> = ({
-  form,
+const DateField: React.FC<DateFieldProps> = ({
   input,
   meta,
   calendarPosition,
@@ -59,7 +57,6 @@ const DateField: React.FC<DateFieldProps & WithFormProps> = ({
         minDateMessage={minDateMessage}
         onCalendarClose={() => setTooltipHiddenState(false)}
         onCalendarOpen={() => setTooltipHiddenState(true)}
-        setFieldData={form.mutators.setFieldData}
       >
         <Input />
       </DateFieldProvider>
@@ -79,4 +76,4 @@ DateField.defaultProps = {
     `Дата не может быть меньше ${format(minDate, "dd.MM.yyyy")}`,
 };
 
-export default withForm(DateField);
+export default DateField;

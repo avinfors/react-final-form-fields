@@ -4,7 +4,6 @@ import { InputGroup, Input, InputProps, InputGroupAddon } from "reactstrap";
 
 import ErrorTooltip from "../ErrorTooltip";
 import { getMetaError } from "../utils";
-import withForm, { WithFormProps } from "../withForm";
 
 export type TextFieldProps = FieldRenderProps<string> &
   InputProps & {
@@ -25,8 +24,7 @@ export type TextFieldProps = FieldRenderProps<string> &
     };
   };
 
-const TextField: React.FC<TextFieldProps & WithFormProps> = ({
-  form,
+const TextField: React.FC<TextFieldProps> = ({
   input,
   meta,
   action,
@@ -40,6 +38,8 @@ const TextField: React.FC<TextFieldProps & WithFormProps> = ({
   validateLanguage,
   ...rest
 }) => {
+  const [staticErrorState, setStaticErrorState] = React.useState("");
+
   const addonClickHandler = () =>
     action?.callback && !disabled && action.callback(input.value);
 
@@ -56,9 +56,7 @@ const TextField: React.FC<TextFieldProps & WithFormProps> = ({
     }
     input.onChange(value);
 
-    form.mutators.setFieldData(input.name, {
-      error: undefined,
-    });
+    setStaticErrorState("");
   };
 
   const changeHadler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -66,16 +64,11 @@ const TextField: React.FC<TextFieldProps & WithFormProps> = ({
 
     if (validateLanguage) {
       const { regex, error } = validateLanguage;
-      const { setFieldData } = form.mutators;
 
       if (value && !regex.test(value)) {
-        return setFieldData(input.name, {
-          error,
-        });
+        return setStaticErrorState(error);
       } else {
-        setFieldData(input.name, {
-          error: undefined,
-        });
+        setStaticErrorState("");
       }
     }
 
@@ -85,14 +78,14 @@ const TextField: React.FC<TextFieldProps & WithFormProps> = ({
   const error = getMetaError(meta);
 
   return (
-    <ErrorTooltip data-name={input.name} error={error}>
+    <ErrorTooltip data-name={input.name} error={error || staticErrorState}>
       <InputGroup>
         <Input
           {...input}
           {...rest}
           autoComplete="off"
           disabled={disabled}
-          invalid={!!error}
+          invalid={!!error || !!staticErrorState}
           onBlur={blurHandler}
           onChange={changeHadler}
           onPaste={(e) => noPast && e.preventDefault()}
@@ -110,4 +103,4 @@ const TextField: React.FC<TextFieldProps & WithFormProps> = ({
   );
 };
 
-export default withForm(TextField);
+export default TextField;

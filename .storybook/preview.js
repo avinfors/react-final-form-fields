@@ -16,6 +16,20 @@ const initialValues = {
   },
 };
 
+const validate = (values) => {
+  const errors = {};
+
+  errors.dateField = {};
+
+  for (const [field, value] of Object.entries(values.dateField)) {
+    if (typeof value === "string") {
+      errors.dateField[field] = value;
+    }
+  }
+
+  return errors;
+};
+
 const withFinalForm = (Story) => (
   <Row form>
     <Col md={6}>
@@ -24,7 +38,7 @@ const withFinalForm = (Story) => (
         initialValues={initialValues}
         mutators={{ setFieldData }}
         onSubmit={() => {}}
-        subscription={{ initial: true }}
+        validate={validate}
       />
     </Col>
   </Row>
