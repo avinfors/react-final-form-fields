@@ -11,6 +11,7 @@ export type CheckboxFieldProps = FieldRenderProps<boolean> &
     id?:
       | CustomInputProps["id"]
       | React.InputHTMLAttributes<HTMLInputElement>["id"];
+    isSwitch?: boolean;
     label?: CustomInputProps["label"];
     readOnly?: React.InputHTMLAttributes<HTMLInputElement>["readOnly"];
   };
@@ -20,6 +21,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   meta,
   disabled,
   id,
+  isSwitch,
   label,
   readOnly,
   ...rest
@@ -39,7 +41,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
         innerRef={ref}
         invalid={!!error}
         label={label}
-        type="checkbox"
+        type={isSwitch ? "switch" : "checkbox"}
         value={undefined}
       />
     </ErrorTooltip>
